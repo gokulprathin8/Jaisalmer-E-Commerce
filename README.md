@@ -1,4 +1,23 @@
 # Jaisalmer-E-Commerce
+
+Tech Stack Used
+HTML5
+CSS3
+Bootstrap4
+JavaScript
+React
+Redux
+Ant Design
+Python
+Django
+PostgreSQL
+Django REST framework (DRF)
+DigitalOcean
+TensorFlow
+Keras
+spaCy
+Amazon SageMaker
+
 Contribution Guideline 💻:
 You may go through these guidelines and contribute accordingly:
 
