@@ -20,7 +20,7 @@ Some of the Core Features Jaisalmer offers -
 
 ---
 
-## **Tech Stack **
+## Tech Stack
 
 |          | Description                                                  |
 | -------- | ------------------------------------------------------------ |
@@ -52,7 +52,7 @@ python3 manage.py runserver # Start server
 
 
 
-## **Ground Rules & Expectations **
+## Ground Rules & Expectations
 
 Before we get started, here are a few things we expect from you (and that you should expect from others):
 
@@ -63,7 +63,7 @@ Before we get started, here are a few things we expect from you (and that you sh
 
 
 
-## **How to Contribute ?**
+## How to Contribute ?
 
 If you'd like to contribute, start by searching through the [issues](https://github.com/github/opensource.guide/issues) and [pull requests](https://github.com/github/opensource.guide/pulls) to see whether someone else has raised a similar idea or question.
 
