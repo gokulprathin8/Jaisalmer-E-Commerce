@@ -1,4 +1,4 @@
-![logo-image](C:\Users\Gokul\Downloads\photo-1542284447-8f5ae4da0df2.jpg)
+![logo-image](logo.jpg)
 
 ![](https://badges.frapsoft.com/os/v1/open-source.svg?v=103) ![Version](https://badge.fury.io/gh/tterb%2FHyde.svg) ![](https://aleen42.github.io/badges/src/react.svg)![](https://aleen42.github.io/badges/src/router.svg) ![](https://aleen42.github.io/badges/src/redux.svg) 
 
