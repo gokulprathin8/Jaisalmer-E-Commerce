@@ -1,3 +1,13 @@
+![logo-image](C:\Users\Gokul\Downloads\photo-1542284447-8f5ae4da0df2.jpg)
+
+![](https://badges.frapsoft.com/os/v1/open-source.svg?v=103) ![Version](https://badge.fury.io/gh/tterb%2FHyde.svg) ![](https://aleen42.github.io/badges/src/react.svg)![](https://aleen42.github.io/badges/src/router.svg) ![](https://aleen42.github.io/badges/src/redux.svg) 
+
+
+
+![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)
+
+
+
 ### **[Jaisalmer E Commerce](https://github.com/gokulprathin8/Jaisalmer-E-Commerce)**
 
 > A Full stack & Machine Learning based application Open-source E-Commerce Application for 1 Click-Store deploy.  Covering all the basic functionality of a Online store,  Jaisalmer E-Commerce offers superior feedback in the forms of graphs, user monitoring, administration and much more..
@@ -20,9 +30,9 @@ Some of the Core Features Jaisalmer offers -
 
 ---
 
-## Tech Stack
+## Tech Stack 
 
-|          | Description                                                  |
+| Category | Description                                                  |
 | -------- | ------------------------------------------------------------ |
 | Frontend | HTML5, CSS3, Bootstrap4, JavaScript, React, Redux, Ant Design |
 | Backend  | Python, Django, PostgreSQL, Django REST framework (DRF), Swagger |
@@ -52,7 +62,7 @@ python3 manage.py runserver # Start server
 
 
 
-## Ground Rules & Expectations
+## Ground Rules & Expectations 
 
 Before we get started, here are a few things we expect from you (and that you should expect from others):
 
