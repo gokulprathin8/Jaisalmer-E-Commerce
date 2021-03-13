@@ -1,5 +1,9 @@
 import os
 from pathlib import Path
+import environ
+
+env = environ.Env()
+environ.Env.read_env()  # reading .env file
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,11 +84,11 @@ WSGI_APPLICATION = 'drf_jaisalmer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ecomm',
-        'USER': 'postgres',
-        'PASSWORD': '1807',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'NAME': env.str('DATABASE_NAME'),
+        'USER': env.str('DATABASE_USER'),
+        'PASSWORD': env.str('DATABASE_PASSWORD'),
+        'HOST': env.str('DATABASE_HOST'),
+        'PORT': env.str('DATABASE_PORT'),
     }
 }
 
