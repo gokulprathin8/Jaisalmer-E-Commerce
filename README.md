@@ -32,12 +32,15 @@ Some of the Core Features Jaisalmer offers -
 
 ## Tech Stack 
 
-| Category | Description                                                  |
-| -------- | ------------------------------------------------------------ |
-| Frontend | HTML5, CSS3, Bootstrap4, JavaScript, React, Redux, Ant Design |
-| Backend  | Python, Django, PostgreSQL, Django REST framework (DRF), Swagger |
-| AI & ML  | TensorFlow, Keras, spaCy, Amazon SageMaker                   |
-| Cloud    | Compatible with AWS, Digital Ocean, Azure, Heroku and GCP    |
+### Frontend:
+<img alt="HTML5" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>	<img alt="CSS3" src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/>	<img alt="Bootstrap" src="https://img.shields.io/badge/bootstrap%20-%23563D7C.svg?&style=for-the-badge&logo=bootstrap&logoColor=white"/>	<img alt="JavaScript" src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>	<img alt="React" src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>	<img alt="Redux" src="https://img.shields.io/badge/redux%20-%23593d88.svg?&style=for-the-badge&logo=redux&logoColor=white"/>	<img alt="Ant-Design" src="https://img.shields.io/badge/-Ant%20Design-%230170FE?&style=for-the-badge&logo=ant-design&logoColor=white"/>	
+### Backend:
+<img alt="Python" src="https://img.shields.io/badge/python%20-%2314354C.svg?&style=for-the-badge&logo=python&logoColor=white"/>	<img alt="Django" src="https://img.shields.io/badge/django%20-%23092E20.svg?&style=for-the-badge&logo=django&logoColor=white"/>	<img alt="Postgres" src ="https://img.shields.io/badge/postgres-%23316192.svg?&style=for-the-badge&logo=postgresql&logoColor=white"/>	<img alt="Django Rest Framework" src="https://img.shields.io/badge/django rest framework%20-%23092E20.svg?&style=for-the-badge&logo=django&logoColor=white"/>	<img alt="Swagger" src="https://img.shields.io/badge/Swagger%20-%2343853D.svg?&style=for-the-badge&logo=Swagger&logoColor=white"/>
+### AI & ML:
+<img alt="TensorFlow" src="https://img.shields.io/badge/TensorFlow%20-%23FF6F00.svg?&style=for-the-badge&logo=TensorFlow&logoColor=white" />	<img alt="Keras" src="https://img.shields.io/badge/Keras%20-%23D00000.svg?&style=for-the-badge&logo=Keras&logoColor=white"/>	<img alt="spaCY" src="https://img.shields.io/badge/spaCY%20-%23013243.svg?&style=for-the-badge&logo=spaCy&logoColor=white" />	<img alt="Amazon SageMaker" src="https://img.shields.io/badge/Amazon SageMaker%20-%230077B5.svg?&style=for-the-badge&logo=Amazon&logoColor=white"/>
+### Cloud:
+<img alt="AWS" src="https://img.shields.io/badge/AWS%20-%23FF9900.svg?&style=for-the-badge&logo=amazon-aws&logoColor=white"/> <img alt="DigitalOcean" src="https://img.shields.io/badge/DigitalOcean-%230167ff.svg?&style=for-the-badge&logo=digitalOcean&logoColor=white"/>	<img alt="Azure" src="https://img.shields.io/badge/azure%20-%230072C6.svg?&style=for-the-badge&logo=azure-devops&logoColor=white"/>	<img alt="Heroku" src="https://img.shields.io/badge/heroku%20-%23430098.svg?&style=for-the-badge&logo=heroku&logoColor=white"/>	<img alt="GCP" src="https://img.shields.io/badge/GCP%20-%23430098.svg?&style=for-the-badge&logo=GCP&logoColor=white"/>
+
 
 Frontend Setup:
 
@@ -82,6 +85,7 @@ If you don't see your idea listed, and you think it fits into the goals of this 
 - **If your contribution is minor,** such as a typo fix, open a pull request.
 - **If your contribution is major,** such as a new guide, start by opening an issue first. That way, other people can weigh in on the discussion before you do any work.
 
+
 ## Contributor:
 ### Congrats to these wonderful people who sucessfully merged their first PR !! ✨✨:
 
@@ -94,3 +98,4 @@ If you don't see your idea listed, and you think it fits into the goals of this 
 		</td>
 	</tr>
 </table>
+
