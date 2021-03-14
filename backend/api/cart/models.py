@@ -31,7 +31,7 @@ class Product(models.Model):
 
 class ProductRating(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    product_rating = models.ForeignKey(Product,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,related_name="p_id",on_delete=models.CASCADE)
     rating = models.CharField(choices=RATING_CHOICES, max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

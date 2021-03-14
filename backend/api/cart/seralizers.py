@@ -6,10 +6,11 @@ from . import models
 class ProductRatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ProductRating
-        fields = ('user', 'product_rating', 'rating')
+        fields = ('user', 'product', 'rating')
 
 class ProductSerializer(serializers.ModelSerializer):
+    p_id = ProductRatingSerializer(many=True)
 
     class Meta:
         model = models.Product
-        fields = ('product_id','product_name', 'product_price', 'product_description')
+        fields = ('product_id','product_name', 'product_price', 'product_description', 'p_id')
