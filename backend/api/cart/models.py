@@ -21,6 +21,11 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = "Product"
+        ordering = ["-created_at"]
+
+
 class ProductMeasurements(models.Model):
     product_measurements = models.ForeignKey(Product, on_delete=models.CASCADE)
     selection_details = MultiSelectField(choices=PRODUCT_MEASUREMENTS_CHOICES, max_choices=4, max_length=255, null=True, blank=True)
@@ -44,10 +49,4 @@ class ProductRating(models.Model):
 
     class Meta:
         db_table = "product_ratings"
-        ordering = ["-created_at"]
-
-
-
-    class Meta:
-        db_table = "product"
         ordering = ["-created_at"]
