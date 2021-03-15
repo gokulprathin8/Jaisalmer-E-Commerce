@@ -23,7 +23,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Product",
             fields=[
-                ("product_id", models.AutoField(primary_key=True, serialize=False)),
+                ("product_id",
+                 models.AutoField(primary_key=True, serialize=False)),
                 ("product_name", models.CharField(max_length=1024)),
                 ("product_price", models.PositiveBigIntegerField()),
                 ("product_description", models.TextField()),
@@ -65,8 +66,8 @@ class Migration(migrations.Migration):
                 (
                     "product_rating",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="cart.product"
-                    ),
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="cart.product"),
                 ),
                 (
                     "user",
@@ -152,8 +153,8 @@ class Migration(migrations.Migration):
                 (
                     "product_measurements",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="cart.product"
-                    ),
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="cart.product"),
                 ),
             ],
             options={

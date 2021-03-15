@@ -24,7 +24,8 @@ class ProductAllRatingSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Product
-        fields = ("product_id", "product_name", "product_price", "product_description")
+        fields = ("product_id", "product_name", "product_price",
+                  "product_description")
 
 
 class ProductMeasurementsSerializer(serializers.ModelSerializer):

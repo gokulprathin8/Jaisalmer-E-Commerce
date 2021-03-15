@@ -21,7 +21,6 @@ from . import seralizers
 # from rest_framework.decorators import permission_classes
 
 
-
 @api_view(["GET", "POST"])
 # @permission_classes([IsAuthenticated])
 def productsList(request):
@@ -35,10 +34,10 @@ def productsList(request):
         product_serializer = seralizers.ProductSerializer(data=product_data)
         if product_serializer.is_valid():
             product_serializer.save()
-            return JsonResponse(product_serializer.data, status=status.HTTP_201_CREATED)
-        return JsonResponse(
-            product_serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
+            return JsonResponse(product_serializer.data,
+                                status=status.HTTP_201_CREATED)
+        return JsonResponse(product_serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["GET", "PUT", "DELETE"])
@@ -47,9 +46,8 @@ def productById(request, id):
     try:
         product = models.Product.objects.get(pk=id)
     except models.Product.DoesNotExist:
-        return JsonResponse(
-            {"message": "The product does not exist"}, status=status.HTTP_404_NOT_FOUND
-        )
+        return JsonResponse({"message": "The product does not exist"},
+                            status=status.HTTP_404_NOT_FOUND)
 
     if request.method == "GET":
         product_serializer = seralizers.ProductSerializer(product)
@@ -57,13 +55,13 @@ def productById(request, id):
 
     elif request.method == "PUT":
         product_data = JSONParser().parse(request)
-        product_serializer = seralizers.ProductSerializer(product, data=product_data)
+        product_serializer = seralizers.ProductSerializer(product,
+                                                          data=product_data)
         if product_serializer.is_valid():
             product_serializer.save()
             return JsonResponse(product_serializer.data)
-        return JsonResponse(
-            product_serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
+        return JsonResponse(product_serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == "DELETE":
         product.delete()
@@ -79,39 +77,38 @@ def productsRatingById(request, uid, pid):
     try:
         product = models.Product.objects.get(pk=pid)
     except models.Product.DoesNotExist:
-        return JsonResponse(
-            {"message": "The product does not exist"}, status=status.HTTP_404_NOT_FOUND
-        )
+        return JsonResponse({"message": "The product does not exist"},
+                            status=status.HTTP_404_NOT_FOUND)
 
     if request.method == "GET":
         try:
-            productRating = models.ProductRating.objects.get(product=pid, user=uid)
+            productRating = models.ProductRating.objects.get(product=pid,
+                                                             user=uid)
         except ObjectDoesNotExist:
             return JsonResponse(
                 {"message": "The product has not been rated"},
                 status=status.HTTP_404_NOT_FOUND,
             )
 
-        productRating_serializer = seralizers.ProductRatingSerializer(productRating)
+        productRating_serializer = seralizers.ProductRatingSerializer(
+            productRating)
         return JsonResponse(productRating_serializer.data, safe=False)
 
     elif request.method == "POST":
         productRating_data = JSONParser().parse(request)
         productRating_serializer = seralizers.ProductRatingSerializer(
-            data=productRating_data
-        )
+            data=productRating_data)
         if productRating_serializer.is_valid():
             productRating_serializer.save()
-            return JsonResponse(
-                productRating_serializer.data, status=status.HTTP_201_CREATED
-            )
-        return JsonResponse(
-            productRating_serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
+            return JsonResponse(productRating_serializer.data,
+                                status=status.HTTP_201_CREATED)
+        return JsonResponse(productRating_serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == "PUT":
         try:
-            productRating = models.ProductRating.objects.get(product=pid, user=uid)
+            productRating = models.ProductRating.objects.get(product=pid,
+                                                             user=uid)
         except ObjectDoesNotExist:
             return JsonResponse(
                 {"message": "The product has not been rated"},
@@ -120,18 +117,17 @@ def productsRatingById(request, uid, pid):
 
         productRating_data = JSONParser().parse(request)
         productRating_serializer = seralizers.ProductRatingSerializer(
-            productRating, data=productRating_data
-        )
+            productRating, data=productRating_data)
         if productRating_serializer.is_valid():
             productRating_serializer.save()
             return JsonResponse(productRating_serializer.data)
-        return JsonResponse(
-            productRating_serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
+        return JsonResponse(productRating_serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == "DELETE":
         try:
-            productRating = models.ProductRating.objects.get(product=pid, user=uid)
+            productRating = models.ProductRating.objects.get(product=pid,
+                                                             user=uid)
         except:
             return JsonResponse(
                 {"message": "The product has not been rated"},
@@ -151,21 +147,20 @@ def productsAllRating(request, pid):
     try:
         product = models.Product.objects.get(pk=pid)
     except models.Product.DoesNotExist:
-        return JsonResponse(
-            {"message": "The product does not exist"}, status=status.HTTP_404_NOT_FOUND
-        )
+        return JsonResponse({"message": "The product does not exist"},
+                            status=status.HTTP_404_NOT_FOUND)
 
     if request.method == "GET":
         try:
-            productAllRating = models.ProductRating.objects.filter(product_id=pid)
+            productAllRating = models.ProductRating.objects.filter(
+                product_id=pid)
         except ObjectDoesNotExist:
             return JsonResponse(
                 {"message": "The product has not been rated"},
                 status=status.HTTP_404_NOT_FOUND,
             )
         productAllRating_serializer = seralizers.ProductAllRatingSerializer(
-            productAllRating, many=True
-        )
+            productAllRating, many=True)
         return JsonResponse(productAllRating_serializer.data, safe=False)
 
 
@@ -175,23 +170,20 @@ def productsMeasurementById(request, pid, mid="00000", units=""):
     try:
         product = models.Product.objects.get(pk=pid)
     except models.Product.DoesNotExist:
-        return JsonResponse(
-            {"message": "The product does not exist"}, status=status.HTTP_404_NOT_FOUND
-        )
+        return JsonResponse({"message": "The product does not exist"},
+                            status=status.HTTP_404_NOT_FOUND)
 
     units = units.split("&")
     print(units, mid)
 
     if sum([int(i) for i in mid]) != len(units):
-        return JsonResponse(
-            {"message": "Invalid Request"}, status=status.HTTP_400_BAD_REQUEST
-        )
+        return JsonResponse({"message": "Invalid Request"},
+                            status=status.HTTP_400_BAD_REQUEST)
 
     if request.method == "GET":
         try:
             productMeasurements = models.ProductMeasurements.objects.filter(
-                product_measurements_id=pid
-            )
+                product_measurements_id=pid)
         except ObjectDoesNotExist:
             return JsonResponse(
                 {"message": "The product has not been rated"},
@@ -204,7 +196,8 @@ def productsMeasurementById(request, pid, mid="00000", units=""):
         data = []
         for record in json_data:
             row = {}
-            row["product_measurements"] = record["fields"]["product_measurements"]
+            row["product_measurements"] = record["fields"][
+                "product_measurements"]
             row["product_volume"] = record["fields"]["product_volume"]
             row["product_area"] = record["fields"]["product_area"]
             row["product_mass"] = record["fields"]["product_mass"]
@@ -219,10 +212,8 @@ def productsMeasurementById(request, pid, mid="00000", units=""):
             if (row["product_volume"] is not None) and int(mid[0]):
                 try:
                     row["product_volume"] = eval(
-                        "Volume(cubic_meter = row['product_volume']).{unit}".format(
-                            unit=units[counter]
-                        )
-                    )
+                        "Volume(cubic_meter = row['product_volume']).{unit}".
+                        format(unit=units[counter]))
                     counter += 1
                 except AttributeError:
                     return JsonResponse(
@@ -234,9 +225,7 @@ def productsMeasurementById(request, pid, mid="00000", units=""):
                 try:
                     row["product_area"] = eval(
                         "Area(sq_m = row['product_area']).{unit}".format(
-                            unit=units[counter]
-                        )
-                    )
+                            unit=units[counter]))
                     counter += 1
                 except AttributeError:
                     return JsonResponse(
@@ -248,9 +237,7 @@ def productsMeasurementById(request, pid, mid="00000", units=""):
                 try:
                     row["product_mass"] = eval(
                         "Mass(g = row['product_mass']).{unit}".format(
-                            unit=units[counter]
-                        )
-                    )
+                            unit=units[counter]))
                     counter += 1
                 except AttributeError:
                     return JsonResponse(
@@ -262,9 +249,7 @@ def productsMeasurementById(request, pid, mid="00000", units=""):
                 try:
                     row["product_weight"] = eval(
                         "Weight(g = row['product_weight']).{unit}".format(
-                            unit=units[counter]
-                        )
-                    )
+                            unit=units[counter]))
                     counter += 1
                 except AttributeError:
                     return JsonResponse(
@@ -276,9 +261,7 @@ def productsMeasurementById(request, pid, mid="00000", units=""):
                 try:
                     row["product_time"] = eval(
                         "Time(s = row['product_time']).{unit}".format(
-                            unit=units[counter]
-                        )
-                    )
+                            unit=units[counter]))
                     counter += 1
                 except AttributeError:
                     return JsonResponse(
@@ -292,23 +275,19 @@ def productsMeasurementById(request, pid, mid="00000", units=""):
     elif request.method == "POST":
         productMeasurements_data = JSONParser().parse(request)
         productMeasurements_serializer = seralizers.ProductMeasurementsSerializer(
-            data=productMeasurements_data
-        )
+            data=productMeasurements_data)
 
         if productMeasurements_serializer.is_valid():
             productMeasurements_serializer.save()
-            return JsonResponse(
-                productMeasurements_serializer.data, status=status.HTTP_201_CREATED
-            )
-        return JsonResponse(
-            productMeasurements_serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
+            return JsonResponse(productMeasurements_serializer.data,
+                                status=status.HTTP_201_CREATED)
+        return JsonResponse(productMeasurements_serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == "PUT":
         try:
             productMeasurements = models.ProductMeasurements.objects.get(
-                product_measurements_id=pid
-            )
+                product_measurements_id=pid)
         except ObjectDoesNotExist:
             return JsonResponse(
                 {"message": "The product has not been rated"},
@@ -317,20 +296,17 @@ def productsMeasurementById(request, pid, mid="00000", units=""):
 
         productMeasurements_data = JSONParser().parse(request)
         productMeasurements_serializer = seralizers.ProductMeasurementsSerializer(
-            productMeasurements, data=productMeasurements_data
-        )
+            productMeasurements, data=productMeasurements_data)
         if productMeasurements_serializer.is_valid():
             productMeasurements_serializer.save()
             return JsonResponse(productMeasurements_serializer.data)
-        return JsonResponse(
-            productMeasurements_serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
+        return JsonResponse(productMeasurements_serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == "DELETE":
         try:
             productMeasurements = models.ProductMeasurements.objects.filter(
-                product_measurements_id=pid
-            )
+                product_measurements_id=pid)
         except:
             return JsonResponse(
                 {"message": "The product has not been rated"},
