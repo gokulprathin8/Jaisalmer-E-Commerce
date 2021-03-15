@@ -1,7 +1,11 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django_measurement.models import MeasurementField
-from measurement.measures import Area, Mass, Time, Volume, Weight
+from measurement.measures import Area
+from measurement.measures import Mass
+from measurement.measures import Time
+from measurement.measures import Volume
+from measurement.measures import Weight
 from multiselectfield import MultiSelectField
 
 RATING_CHOICES = [

@@ -1,5 +1,9 @@
 from django_measurement.models import MeasurementField
-from measurement.measures import Area, Mass, Time, Volume, Weight
+from measurement.measures import Area
+from measurement.measures import Mass
+from measurement.measures import Time
+from measurement.measures import Volume
+from measurement.measures import Weight
 from rest_framework import serializers
 
 from . import models
