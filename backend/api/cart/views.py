@@ -114,13 +114,21 @@ def productsRatingById(request, uid, pid):
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 #@permission_classes([IsAuthenticated])
-def productsMeasurementById(request, pid):
+def productsMeasurementById(request, pid, mid = '00000', units = ''):
     try: 
         product = models.Product.objects.get(pk=pid) 
     except models.Product.DoesNotExist: 
         return JsonResponse({
             'message': 'The product does not exist'
-            }, status=status.HTTP_404_NOT_FOUND)  
+            }, status=status.HTTP_404_NOT_FOUND) 
+
+    units = units.split('&') 
+    print(units, mid)
+
+    if(sum([int(i) for i in mid]) != len(units)):
+        return JsonResponse({
+            'message': 'Invalid Request'
+            }, status=status.HTTP_400_BAD_REQUEST)
  
     if request.method == 'GET':
         try: 
@@ -146,9 +154,54 @@ def productsMeasurementById(request, pid):
             for i in row.keys():
                 if((row[i] is not None) and type(row[i]) != int):
                     row[i] = float(row[i].split(':')[0])
-            data.append(row)
-        
-        
+
+            counter = 0
+            if ((row['product_volume'] is not None) and int(mid[0])):
+                try:
+                    row['product_volume'] = eval("Volume(cubic_meter = row['product_volume']).{unit}".format(unit = units[counter]))
+                    counter += 1
+                except AttributeError:
+                    return JsonResponse({
+                        'message': 'Invalid Units Given'
+                    }, status=status.HTTP_400_BAD_REQUEST)
+            
+            if ((row['product_area'] is not None) and int(mid[1])):
+                try:
+                    row['product_area'] = eval("Area(sq_m = row['product_area']).{unit}".format(unit = units[counter]))
+                    counter += 1
+                except AttributeError:
+                    return JsonResponse({
+                        'message': 'Invalid Units Given'
+                    }, status=status.HTTP_400_BAD_REQUEST)
+            
+            if ((row['product_mass'] is not None) and int(mid[2])):
+                try:
+                    row['product_mass'] = eval("Mass(g = row['product_mass']).{unit}".format(unit = units[counter]))
+                    counter += 1
+                except AttributeError:
+                    return JsonResponse({
+                        'message': 'Invalid Units Given'
+                    }, status=status.HTTP_400_BAD_REQUEST)
+            
+            if ((row['product_weight'] is not None) and int(mid[3])):
+                try:
+                    row['product_weight'] = eval("Weight(g = row['product_weight']).{unit}".format(unit = units[counter]))
+                    counter += 1
+                except AttributeError:
+                    return JsonResponse({
+                        'message': 'Invalid Units Given'
+                    }, status=status.HTTP_400_BAD_REQUEST)
+            
+            if ((row['product_time'] is not None) and int(mid[4])):
+                try:
+                    row['product_time'] = eval("Time(s = row['product_time']).{unit}".format(unit = units[counter]))
+                    counter += 1
+                except AttributeError:
+                    return JsonResponse({
+                        'message': 'Invalid Units Given'
+                    }, status=status.HTTP_400_BAD_REQUEST)
+
+            data.append(row)        
         return JsonResponse(data, safe=False)
     
     elif request.method == 'POST':
