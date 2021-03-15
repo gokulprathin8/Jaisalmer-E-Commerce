@@ -6,6 +6,7 @@ urlpatterns = [
     path('products/', views.productsList),
     path('products/<int:id>/', views.productById),
     path('products/rating/uid=<int:uid>&pid=<int:pid>/', views.productsRatingById),
+    path('products/rating/pid=<int:pid>/', views.productsAllRating),
     path('products/measurement/pid=<int:pid>', views.productsMeasurementById),
     path('products/measurement/pid=<int:pid>/mid=<str:mid>', views.productsMeasurementById),
     path('products/measurement/pid=<int:pid>/mid=<str:mid>/', views.productsMeasurementById),

@@ -9,6 +9,11 @@ class ProductRatingSerializer(serializers.ModelSerializer):
         model = models.ProductRating
         fields = ('user', 'product', 'rating')
 
+class ProductAllRatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.ProductRating
+        fields = ('product', 'rating')
+
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Product

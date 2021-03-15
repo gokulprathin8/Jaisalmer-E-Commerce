@@ -112,6 +112,26 @@ def productsRatingById(request, uid, pid):
         productRating.delete() 
         return JsonResponse({'message': 'Product Rating was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
+@api_view(['GET'])
+#@permission_classes([IsAuthenticated])
+def productsAllRating(request, pid):
+    try: 
+        product = models.Product.objects.get(pk=pid) 
+    except models.Product.DoesNotExist: 
+        return JsonResponse({
+            'message': 'The product does not exist'
+            }, status=status.HTTP_404_NOT_FOUND)  
+ 
+    if request.method == 'GET':
+        try: 
+            productAllRating = models.ProductRating.objects.filter(product_id=pid)
+        except ObjectDoesNotExist: 
+            return JsonResponse({
+            'message': 'The product has not been rated'
+            }, status=status.HTTP_404_NOT_FOUND)           
+        productAllRating_serializer = seralizers.ProductAllRatingSerializer(productAllRating, many = True) 
+        return JsonResponse(productAllRating_serializer.data, safe=False) 
+
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 #@permission_classes([IsAuthenticated])
 def productsMeasurementById(request, pid, mid = '00000', units = ''):
