@@ -30,7 +30,7 @@ class Product(models.Model):
         ordering = ["-created_at"]
 
 class ProductRating(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,related_name="user_id",on_delete=models.CASCADE)
     product = models.ForeignKey(Product,related_name="p_id",on_delete=models.CASCADE)
     rating = models.CharField(choices=RATING_CHOICES, max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -41,7 +41,7 @@ class ProductRating(models.Model):
         ordering = ["-created_at"]
 
 class ProductMeasurements(models.Model):
-    product_measurements = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_measurements = models.ForeignKey(Product,related_name="pro_id", on_delete=models.CASCADE)
     selection_details = MultiSelectField(choices=PRODUCT_MEASUREMENTS_CHOICES, max_choices=4, max_length=255, null=True, blank=True)
     product_volume = MeasurementField(measurement=Volume, null=True, blank=True)
     product_area = MeasurementField(measurement=Area, null=True, blank=True)
