@@ -38,12 +38,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProductRating',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('rating', models.CharField(choices=[('ONE', 'ONE'), ('TWO', 'TWO'), ('THREE', 'THREE'), ('FOUR', 'FOUR'), ('FIVE', 'FIVE')], max_length=10)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('rating', models.CharField(choices=[('ONE', 'ONE'), ('TWO', 'TWO'), (
+                    'THREE', 'THREE'), ('FOUR', 'FOUR'), ('FIVE', 'FIVE')], max_length=10)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('product_rating', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cart.product')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('product_rating', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='cart.product')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'db_table': 'product_ratings',
@@ -53,16 +57,24 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProductMeasurements',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('selection_details', multiselectfield.db.fields.MultiSelectField(blank=True, choices=[('AREA', 'AREA'), ('MASS', 'MASS'), ('WEIGHT', 'WEIGHT'), ('TIME', 'TIME')], max_length=255, null=True)),
-                ('product_volume', django_measurement.models.MeasurementField(blank=True, measurement=measurement.measures.volume.Volume, null=True)),
-                ('product_area', django_measurement.models.MeasurementField(blank=True, measurement=measurement.measures.distance.Area, null=True)),
-                ('product_mass', django_measurement.models.MeasurementField(blank=True, measurement=measurement.measures.mass.Mass, null=True)),
-                ('product_weight', django_measurement.models.MeasurementField(blank=True, measurement=measurement.measures.mass.Mass, null=True)),
-                ('product_time', django_measurement.models.MeasurementField(blank=True, measurement=measurement.measures.time.Time, null=True)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('selection_details', multiselectfield.db.fields.MultiSelectField(blank=True, choices=[
+                 ('AREA', 'AREA'), ('MASS', 'MASS'), ('WEIGHT', 'WEIGHT'), ('TIME', 'TIME')], max_length=255, null=True)),
+                ('product_volume', django_measurement.models.MeasurementField(
+                    blank=True, measurement=measurement.measures.volume.Volume, null=True)),
+                ('product_area', django_measurement.models.MeasurementField(
+                    blank=True, measurement=measurement.measures.distance.Area, null=True)),
+                ('product_mass', django_measurement.models.MeasurementField(
+                    blank=True, measurement=measurement.measures.mass.Mass, null=True)),
+                ('product_weight', django_measurement.models.MeasurementField(
+                    blank=True, measurement=measurement.measures.mass.Mass, null=True)),
+                ('product_time', django_measurement.models.MeasurementField(
+                    blank=True, measurement=measurement.measures.time.Time, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('product_measurements', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cart.product')),
+                ('product_measurements', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='cart.product')),
             ],
             options={
                 'db_table': 'product_measurements',
