@@ -14,15 +14,7 @@ class ProductSerializer(serializers.ModelSerializer):
         model = models.Product
         fields = ('product_id','product_name', 'product_price', 'product_description')
 
-# class ProductMeasurementsSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = models.ProductMeasurements
-#         fields = ('product_volume', 'product_area', 'product_mass', 'product_weight', 'product_time')
-
-class ProductMeasurementsSerializer(serializers.Serializer):
+class ProductMeasurementsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ProductMeasurements
-        field = ('product_volume')
-
-class ProductMeasurementsListSerializer(serializers.ListSerializer):
-    child =  ProductMeasurementsSerializer()
+        fields = ('product_volume', 'product_area', 'product_mass', 'product_weight', 'product_time','product_measurements')

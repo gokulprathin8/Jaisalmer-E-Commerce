@@ -130,34 +130,31 @@ def productsMeasurementById(request, pid):
             'message': 'The product has not been rated'
             }, status=status.HTTP_404_NOT_FOUND)  
 
-        # productMeasurements_serializer = seralizers.ProductMeasurementsListSerializer(productMeasurements.values(), many=True)
-        # return JsonResponse(productMeasurements_serializer.data, safe=False)
-
-        # data = []
-        # for pm_obj in productMeasurements:
-        #      row = {}
-        #      row['product_volume'] = seralizers.ProductMeasurementsSerializer(pm_obj, many=True)
-        #      data.append(row)
-        # return JsonResponse(data, safe=False)
-
         str_data = serialize('json', productMeasurements) 
-        data = json.loads(str_data)
-        return JsonResponse(data, safe=False)
+        json_data = json.loads(str_data)
 
-        # data = []
-        # for pm_obj in productMeasurements.values():
-        #      row = {}
-        #      row['id'] = pm_obj['product_measurements_id']
-        #      #row['product_volume'] = Volume(cubic_meter = 1).cubic_meter
-        #      #row['product_volume'] = pm_obj['product_volume'].cubic_meter
-        #      row['product_volume'] = pm_obj['product_volume']
-             
-        #      data.append(row)
-        # return JsonResponse(data, safe=False)
+        data = []
+        for record in json_data:
+            row = {}
+            row['product_measurements'] = record['fields']['product_measurements']
+            row['product_volume'] = record['fields']['product_volume'] 
+            row['product_area'] = record['fields']['product_area'] 
+            row['product_mass'] = record['fields']['product_mass']
+            row['product_weight'] = record['fields']['product_weight']
+            row['product_time'] = record['fields']['product_time']
+
+            for i in row.keys():
+                if((row[i] is not None) and type(row[i]) != int):
+                    row[i] = float(row[i].split(':')[0])
+            data.append(row)
+        
+        
+        return JsonResponse(data, safe=False)
     
     elif request.method == 'POST':
         productMeasurements_data = JSONParser().parse(request) 
         productMeasurements_serializer = seralizers.ProductMeasurementsSerializer(data=productMeasurements_data)
+
         if productMeasurements_serializer.is_valid(): 
             productMeasurements_serializer.save()
             return JsonResponse(productMeasurements_serializer.data, status=status.HTTP_201_CREATED) 
@@ -165,7 +162,7 @@ def productsMeasurementById(request, pid):
 
     elif request.method == 'PUT': 
         try: 
-            productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid).in_bulk()
+            productMeasurements = models.ProductMeasurements.objects.get(product_measurements_id=pid)
         except ObjectDoesNotExist: 
             return JsonResponse({
             'message': 'The product has not been rated'
@@ -180,7 +177,7 @@ def productsMeasurementById(request, pid):
  
     elif request.method == 'DELETE':
         try: 
-            productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid).in_bulk()
+            productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid)
         except: 
             return JsonResponse({
             'message': 'The product has not been rated'
@@ -188,58 +185,3 @@ def productsMeasurementById(request, pid):
 
         productMeasurements.delete() 
         return JsonResponse({'message': 'Product Rating was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
-
-# @api_view(['GET', 'POST', 'PUT', 'DELETE'])
-# #@permission_classes([IsAuthenticated])
-# def productsMeasurementById(request, pid):
-#     try: 
-#         product = models.Product.objects.get(pk=pid) 
-#     except models.Product.DoesNotExist: 
-#         return JsonResponse({
-#             'message': 'The product does not exist'
-#             }, status=status.HTTP_404_NOT_FOUND)  
- 
-#     if request.method == 'GET':
-#         try: 
-#             productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid).in_bulk() 
-#         except ObjectDoesNotExist: 
-#             return JsonResponse({
-#             'message': 'The product has not been rated'
-#             }, status=status.HTTP_404_NOT_FOUND)  
-         
-#         productMeasurements_serializer = seralizers.ProductMeasurementsSerializer(productMeasurements) 
-#         return JsonResponse(productMeasurements_serializer.data, safe=False) 
-    
-#     elif request.method == 'POST':
-#         productMeasurements_data = JSONParser().parse(request) 
-#         productMeasurements_serializer = seralizers.ProductMeasurementsSerializer(data=productMeasurements_data)
-#         if productMeasurements_serializer.is_valid(): 
-#             productMeasurements_serializer.save()
-#             return JsonResponse(productMeasurements_serializer.data, status=status.HTTP_201_CREATED) 
-#         return JsonResponse(productMeasurements_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-#     elif request.method == 'PUT': 
-#         try: 
-#             productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid).in_bulk()
-#         except ObjectDoesNotExist: 
-#             return JsonResponse({
-#             'message': 'The product has not been rated'
-#             }, status=status.HTTP_404_NOT_FOUND)  
-
-#         productMeasurements_data = JSONParser().parse(request) 
-#         productMeasurements_serializer = seralizers.ProductMeasurementsSerializer(productMeasurements, data=productMeasurements_data) 
-#         if productMeasurements_serializer.is_valid(): 
-#             productMeasurements_serializer.save() 
-#             return JsonResponse(productMeasurements_serializer.data) 
-#         return JsonResponse(productMeasurements_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
- 
-#     elif request.method == 'DELETE':
-#         try: 
-#             productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid).in_bulk()
-#         except: 
-#             return JsonResponse({
-#             'message': 'The product has not been rated'
-#             }, status=status.HTTP_404_NOT_FOUND)  
-
-#         productMeasurements.delete() 
-#         return JsonResponse({'message': 'Product Rating was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
