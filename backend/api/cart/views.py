@@ -1,16 +1,22 @@
+import json
 from django.shortcuts import render
 from django.http.response import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
- 
+#from rest_framework.decorators import permission_classes
+
+from django.core.serializers import serialize 
+from measurement.measures import Volume, Area, Mass, Time, Weight 
 from . import models
 from . import seralizers
 
 @api_view(['GET', 'POST'])
+#@permission_classes([IsAuthenticated])
 def productsList(request):
     if request.method == 'GET':
         products = models.Product.objects.all()
@@ -26,6 +32,7 @@ def productsList(request):
         return JsonResponse(product_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
+#@permission_classes([IsAuthenticated])
 def productById(request, id):
     try: 
         product = models.Product.objects.get(pk=id) 
@@ -51,6 +58,7 @@ def productById(request, id):
         return JsonResponse({'message': 'Product was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
+#@permission_classes([IsAuthenticated])
 def productsRatingById(request, uid, pid):
     try: 
         product = models.Product.objects.get(pk=pid) 
@@ -103,3 +111,135 @@ def productsRatingById(request, uid, pid):
 
         productRating.delete() 
         return JsonResponse({'message': 'Product Rating was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+#@permission_classes([IsAuthenticated])
+def productsMeasurementById(request, pid):
+    try: 
+        product = models.Product.objects.get(pk=pid) 
+    except models.Product.DoesNotExist: 
+        return JsonResponse({
+            'message': 'The product does not exist'
+            }, status=status.HTTP_404_NOT_FOUND)  
+ 
+    if request.method == 'GET':
+        try: 
+            productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid)
+        except ObjectDoesNotExist: 
+            return JsonResponse({
+            'message': 'The product has not been rated'
+            }, status=status.HTTP_404_NOT_FOUND)  
+
+        # productMeasurements_serializer = seralizers.ProductMeasurementsListSerializer(productMeasurements.values(), many=True)
+        # return JsonResponse(productMeasurements_serializer.data, safe=False)
+
+        # data = []
+        # for pm_obj in productMeasurements:
+        #      row = {}
+        #      row['product_volume'] = seralizers.ProductMeasurementsSerializer(pm_obj, many=True)
+        #      data.append(row)
+        # return JsonResponse(data, safe=False)
+
+        str_data = serialize('json', productMeasurements) 
+        data = json.loads(str_data)
+        return JsonResponse(data, safe=False)
+
+        # data = []
+        # for pm_obj in productMeasurements.values():
+        #      row = {}
+        #      row['id'] = pm_obj['product_measurements_id']
+        #      #row['product_volume'] = Volume(cubic_meter = 1).cubic_meter
+        #      #row['product_volume'] = pm_obj['product_volume'].cubic_meter
+        #      row['product_volume'] = pm_obj['product_volume']
+             
+        #      data.append(row)
+        # return JsonResponse(data, safe=False)
+    
+    elif request.method == 'POST':
+        productMeasurements_data = JSONParser().parse(request) 
+        productMeasurements_serializer = seralizers.ProductMeasurementsSerializer(data=productMeasurements_data)
+        if productMeasurements_serializer.is_valid(): 
+            productMeasurements_serializer.save()
+            return JsonResponse(productMeasurements_serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(productMeasurements_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'PUT': 
+        try: 
+            productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid).in_bulk()
+        except ObjectDoesNotExist: 
+            return JsonResponse({
+            'message': 'The product has not been rated'
+            }, status=status.HTTP_404_NOT_FOUND)  
+
+        productMeasurements_data = JSONParser().parse(request) 
+        productMeasurements_serializer = seralizers.ProductMeasurementsSerializer(productMeasurements, data=productMeasurements_data) 
+        if productMeasurements_serializer.is_valid(): 
+            productMeasurements_serializer.save() 
+            return JsonResponse(productMeasurements_serializer.data) 
+        return JsonResponse(productMeasurements_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+ 
+    elif request.method == 'DELETE':
+        try: 
+            productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid).in_bulk()
+        except: 
+            return JsonResponse({
+            'message': 'The product has not been rated'
+            }, status=status.HTTP_404_NOT_FOUND)  
+
+        productMeasurements.delete() 
+        return JsonResponse({'message': 'Product Rating was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+# @api_view(['GET', 'POST', 'PUT', 'DELETE'])
+# #@permission_classes([IsAuthenticated])
+# def productsMeasurementById(request, pid):
+#     try: 
+#         product = models.Product.objects.get(pk=pid) 
+#     except models.Product.DoesNotExist: 
+#         return JsonResponse({
+#             'message': 'The product does not exist'
+#             }, status=status.HTTP_404_NOT_FOUND)  
+ 
+#     if request.method == 'GET':
+#         try: 
+#             productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid).in_bulk() 
+#         except ObjectDoesNotExist: 
+#             return JsonResponse({
+#             'message': 'The product has not been rated'
+#             }, status=status.HTTP_404_NOT_FOUND)  
+         
+#         productMeasurements_serializer = seralizers.ProductMeasurementsSerializer(productMeasurements) 
+#         return JsonResponse(productMeasurements_serializer.data, safe=False) 
+    
+#     elif request.method == 'POST':
+#         productMeasurements_data = JSONParser().parse(request) 
+#         productMeasurements_serializer = seralizers.ProductMeasurementsSerializer(data=productMeasurements_data)
+#         if productMeasurements_serializer.is_valid(): 
+#             productMeasurements_serializer.save()
+#             return JsonResponse(productMeasurements_serializer.data, status=status.HTTP_201_CREATED) 
+#         return JsonResponse(productMeasurements_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#     elif request.method == 'PUT': 
+#         try: 
+#             productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid).in_bulk()
+#         except ObjectDoesNotExist: 
+#             return JsonResponse({
+#             'message': 'The product has not been rated'
+#             }, status=status.HTTP_404_NOT_FOUND)  
+
+#         productMeasurements_data = JSONParser().parse(request) 
+#         productMeasurements_serializer = seralizers.ProductMeasurementsSerializer(productMeasurements, data=productMeasurements_data) 
+#         if productMeasurements_serializer.is_valid(): 
+#             productMeasurements_serializer.save() 
+#             return JsonResponse(productMeasurements_serializer.data) 
+#         return JsonResponse(productMeasurements_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+ 
+#     elif request.method == 'DELETE':
+#         try: 
+#             productMeasurements = models.ProductMeasurements.objects.filter(product_measurements_id=pid).in_bulk()
+#         except: 
+#             return JsonResponse({
+#             'message': 'The product has not been rated'
+#             }, status=status.HTTP_404_NOT_FOUND)  
+
+#         productMeasurements.delete() 
+#         return JsonResponse({'message': 'Product Rating was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
