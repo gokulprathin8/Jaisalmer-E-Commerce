@@ -1,8 +1,8 @@
-from rest_framework import serializers
-from . import models
-
 from django_measurement.models import MeasurementField
-from measurement.measures import Volume, Area, Mass, Time, Weight
+from measurement.measures import Area, Mass, Time, Volume, Weight
+from rest_framework import serializers
+
+from . import models
 
 
 class ProductRatingSerializer(serializers.ModelSerializer):
