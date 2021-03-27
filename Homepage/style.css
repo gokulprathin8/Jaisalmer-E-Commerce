@@ -1,0 +1,170 @@
+body {
+    margin:0;
+    font-family:sytem-ui;
+
+}
+
+.parallax{
+    
+    background-image: url(pic.png);
+    height:max-content;
+    background-attachment:fixed;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+.page-title{
+    background: rgba(0, 0, 0, 0.5);
+    text-align:center;
+    color: white;
+    padding: 50px;
+    font-variant: small-caps;
+    font-size: 80px;
+    font-family: fantasy;
+    letter-spacing: 20px;
+    
+}
+
+.sticky{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.menu{
+    background: #dd8635;
+    text-align: center;
+}
+
+.menu-ul{
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+.menu-ul li{
+    font-size: 17px;
+    list-style: none;
+    display: inline-block;
+    padding: 25px 25px 26px 25px;
+}
+
+.a-menu {
+    text-decoration: none;
+    color: white;
+}
+
+.menu-ul li:hover{
+    background: rgb(250, 192, 117);
+    transform: scale(1.1);
+}
+
+.search-box{
+    border: 1px solid white;
+    border-radius: 50px;
+    background: white;
+    width: max-content;
+    display: inline-block;
+    margin: 8px;
+    
+}
+.search-box:hover{
+    box-shadow: 0 0 10px 2px #ffc649;
+    border: 1px solid #ffc649;
+
+}
+
+.search-input{
+    width: 250px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    background: transparent;
+    margin: 15px 0 0 10px;
+}
+i{
+    font-size: 20px;
+    margin: 0 10px 0 0;
+}
+
+button{
+    background: transparent;
+    border:none;
+    outline: none;
+    
+}
+.container{
+    margin: 50px 50px 50px 5%;
+    width: 90%;
+    text-align: center;
+    background-color: rgb(236, 178, 91);
+    
+    
+}
+.categories{
+    width: max-content;
+    margin: 25px;
+    border: 1px solid rgb(214, 206, 199);
+    border-width: 2.5px;
+    display: inline-block;
+}
+
+.categories:hover{
+    box-shadow: 0 0 10px 3px white;
+}
+
+.item-image{
+    height: 200px;
+    width: 200px;
+    
+    padding: 10px;
+}
+
+.image-title{
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+}
+
+.dropbtn {
+    background-color: rgb(220, 158, 248);
+    color: white;
+    padding: 8px;
+    font-size: 10px;
+    border: none;
+    box-shadow: 0px 8px 16px 0px rgba(255, 255, 254, 0.76);
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(236, 203, 252);
+    
+    
+    z-index: 1;
+    font-size: 10px;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 6px 9px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: rgb(220, 158, 248)}
