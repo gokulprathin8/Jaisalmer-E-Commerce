@@ -1,8 +1,14 @@
-from django.urls import include, path
+from django.urls import include, path, re_path
 from rest_framework.routers import DefaultRouter
-
-router = DefaultRouter()
+from . import views
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('products/', views.productsList),
+    path('products/<int:id>/', views.productById),
+    path('products/rating/uid=<int:uid>&pid=<int:pid>/', views.productsRatingById),
+    path('products/rating/pid=<int:pid>/', views.productsAllRating),
+    path('products/measurement/pid=<int:pid>', views.productsMeasurementById),
+    path('products/measurement/pid=<int:pid>/mid=<str:mid>', views.productsMeasurementById),
+    path('products/measurement/pid=<int:pid>/mid=<str:mid>/', views.productsMeasurementById),
+    path('products/measurement/pid=<int:pid>/mid=<str:mid>/units=<str:units>', views.productsMeasurementById),
 ]
