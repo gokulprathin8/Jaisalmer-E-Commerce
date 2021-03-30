@@ -1,0 +1,13 @@
+name: Greetings
+
+on: [pull_request, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: 'Hi, Congragulations on raising your first issue. Looking forward for your amazing contributions !!!'
+        pr-message: 'Hi, Jaisalmer-E-Commerce Community appreciates your contribution towards making this a better project. Our community is growing everyday & contributors like you are helping us improve day by day. Thankyou.'
