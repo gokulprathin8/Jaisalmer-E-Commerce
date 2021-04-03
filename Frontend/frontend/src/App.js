@@ -1,12 +1,9 @@
-import React from 'react';
-import './App.css';
+import "./App.css";
+
+import React from "react";
 
 function App() {
-  return (
-    <React.Fragment>
-      
-    </React.Fragment>
-  );
+  return <React.Fragment></React.Fragment>;
 }
 
 export default App;

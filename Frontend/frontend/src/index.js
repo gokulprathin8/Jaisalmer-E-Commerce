@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.css";
+
+import React from "react";
+import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import { createStore, applyMiddleware, compose } from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
 import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 import reduxThunk from "redux-thunk";
 
+import App from "./App";
 import reducers from "./redux/reducers";
-
-import 'bootstrap/dist/css/bootstrap.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -27,5 +27,5 @@ ReactDOM.render(
       <App />
     </PersistGate>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
