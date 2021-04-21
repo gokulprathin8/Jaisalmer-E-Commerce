@@ -8,9 +8,9 @@
 
 
 
-### **[Jaisalmer E Commerce](https://github.com/gokulprathin8/Jaisalmer-E-Commerce)**
+### **[Jaisalmer E-Commerce](https://github.com/gokulprathin8/Jaisalmer-E-Commerce)**
 
-> A Full stack & Machine Learning based application Open-source E-Commerce Application for 1 Click-Store deploy.  Covering all the basic functionality of a Online store,  Jaisalmer E-Commerce offers superior feedback in the forms of graphs, user monitoring, administration and much more..
+> A Full-stack & Machine Learning based application Open-source E-Commerce Application for 1 Click-Store deploy.  Covering all the basic functionality of an Online store,  Jaisalmer E-Commerce offers superior feedback in the forms of graphs, user monitoring, administration, and much more.
 
 
 
@@ -76,7 +76,7 @@ Before we get started, here are a few things we expect from you (and that you sh
 
 
 
-## How to Contribute ?
+## How to Contribute?
 
 If you'd like to contribute, start by searching through the [issues](https://github.com/github/opensource.guide/issues) and [pull requests](https://github.com/github/opensource.guide/pulls) to see whether someone else has raised a similar idea or question.
 
@@ -87,7 +87,7 @@ If you don't see your idea listed, and you think it fits into the goals of this 
 
 
 ## Contributor:
-### Congrats to these wonderful people who sucessfully merged their first PR !! ✨✨:
+### Congrats to these wonderful people who successfully merged their first PR !! ✨✨:
 
 <table>
 	<tr>
