@@ -1,7 +1,9 @@
-import React from "react";
 import "./App.css";
-import Redirect from "./routing/router";
 import "bootstrap/dist/css/bootstrap.css";
+
+import React from "react";
+
+import Redirect from "./routing/router";
 
 function App() {
   return (
