@@ -9,6 +9,11 @@ import {
   FormControl,
   Button,
   Carousel,
+  Container,
+  Row,
+  Col,
+  Card,
+  Image,
 } from "react-bootstrap";
 
 // import reducers here
@@ -17,7 +22,8 @@ const Homepage = () => {
   return (
     <React.Fragment>
       <div>
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="primary" variant="dark">
+          {" "}
           <Navbar.Brand href="#home">Jaisalmer E-Commerce</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -48,7 +54,7 @@ const Homepage = () => {
           </Navbar.Collapse>
         </Navbar>
       </div>
-      <div className="carousel">
+      <div style={{ marginTop: "0.5rem" }} className="carousel">
         <Carousel>
           <Carousel.Item>
             <img
@@ -86,7 +92,62 @@ const Homepage = () => {
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
+        <div
+          style={{
+            marginLeft: "10rem",
+            marginTop: "3.5rem",
+          }}
+        >
+          <h2>Featured</h2>
+        </div>
       </div>
+      <div style={{ marginTop: "10rem" }}></div>
+      <Container>
+        <Row>
+          <Col>
+            <Card style={{ width: "18rem" }}>
+              <Image
+                style={{ height: "20rem" }}
+                variant="top"
+                src="https://source.unsplash.com/random"
+              />
+              <Card.Body>
+                <Card.Title>Product Title</Card.Title>
+                <Card.Text>Product Description</Card.Text>
+                <Button variant="primary">Know More</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ width: "18rem" }}>
+              <Image
+                style={{ height: "20rem" }}
+                variant="top"
+                src="https://source.unsplash.com/random"
+              />
+              <Card.Body>
+                <Card.Title>Product Title</Card.Title>
+                <Card.Text>Product Description</Card.Text>
+                <Button variant="primary">Know More</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{ width: "18rem" }}>
+              <Image
+                style={{ height: "20rem" }}
+                variant="top"
+                src="https://source.unsplash.com/random"
+              />
+              <Card.Body>
+                <Card.Title>Product Title</Card.Title>
+                <Card.Text>Product Description</Card.Text>
+                <Button variant="primary">Know More</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </React.Fragment>
   );
 };
