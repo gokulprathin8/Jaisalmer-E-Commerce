@@ -4,7 +4,8 @@ import nltk
 import numpy as np
 import pandas as pd
 from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
