@@ -1,21 +1,21 @@
-import React from "react";
 import "./styles.css";
-import { Facebook, Github, Youtube } from "react-bootstrap-icons";
 
+import React from "react";
 import {
-  Navbar,
-  Nav,
-  NavDropdown,
+  Button,
+  Card,
+  Carousel,
+  Col,
+  Container,
   Form,
   FormControl,
-  Button,
-  Carousel,
-  Container,
-  Row,
-  Col,
-  Card,
   Image,
+  Nav,
+  Navbar,
+  NavDropdown,
+  Row,
 } from "react-bootstrap";
+import {Facebook, Github, Youtube} from "react-bootstrap-icons";
 
 // import reducers here
 
