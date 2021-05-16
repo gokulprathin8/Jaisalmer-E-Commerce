@@ -15,7 +15,7 @@ import {
   NavDropdown,
   Row,
 } from "react-bootstrap";
-import {Facebook, Github, Youtube} from "react-bootstrap-icons";
+import { Facebook, Github, Youtube } from "react-bootstrap-icons";
 
 // import reducers here
 
