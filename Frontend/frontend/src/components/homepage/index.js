@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import { Facebook, Github, Youtube } from "react-bootstrap-icons";
 
 import {
   Navbar,
@@ -202,6 +203,22 @@ const Homepage = () => {
                 <Button variant="APPAREL">APPAREL -> </Button>
               </Col>
             </Row>
+          </Container>
+        </div>
+        <div className="divider"></div>
+        <div
+          style={{
+            marginTop: "2rem",
+            justifyContent: "center",
+            textAlign: "center",
+          }}
+          className="social-links"
+        >
+          <Container>
+            <Facebook style={{ fontSize: "40px", marginRight: "10px" }} />
+
+            <Github style={{ fontSize: "40px", marginRight: "10px" }} />
+            <Youtube style={{ fontSize: "40px" }} />
           </Container>
         </div>
       </div>
